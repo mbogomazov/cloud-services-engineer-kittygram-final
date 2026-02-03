@@ -8,6 +8,5 @@ RUN npm ci
 
 COPY . .
 RUN npm run build
-RUN npm install --global http-server
 
-CMD ["npx", "-y", "http-server", "-p", "8000", "/app/build"]
+CMD cp -r /app/build/. /app/result_build/
