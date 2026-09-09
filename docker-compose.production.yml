@@ -9,6 +9,11 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $POSTGRES_DB -U $POSTGRES_USER"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   backend:
     image: ${DOCKERHUB_USERNAME}/kittygram_backend
@@ -17,7 +22,8 @@ services:
       - static:/app/collected_static
       - media:/app/media
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   frontend:
     image: ${DOCKERHUB_USERNAME}/kittygram_frontend
@@ -32,5 +38,7 @@ services:
       - static:/static
       - media:/media
     depends_on:
-      - backend
-      - frontend
+      backend:
+        condition: service_started
+      frontend:
+        condition: service_completed_successfully

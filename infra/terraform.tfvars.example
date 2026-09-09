@@ -1,0 +1,17 @@
+# Copy to terraform.tfvars and fill in. terraform.tfvars is gitignored.
+# For CI, prefer TF_VAR_* env vars / GitHub Secrets instead of this file.
+
+cloud_id        = "b1xxxxxxxxxxxxxxxxxx"
+folder_id       = "b1xxxxxxxxxxxxxxxxxx"
+zone            = "ru-central1-d"
+
+# Static access key of the service account (storage.editor) for the app bucket.
+access_key      = "YCxxxxxxxxxxxxxxxxxx"
+secret_key      = "YCxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+app_bucket_name = "kittygram-app-bucket-unique"
+
+vm_user         = "yc-user"
+ssh_public_key  = "ssh-ed25519 AAAA... user@host"
+
+gateway_port    = 9000

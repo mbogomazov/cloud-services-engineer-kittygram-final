@@ -1,2 +1,11 @@
 
 .DS_Store
+.env
+
+# Terraform
+infra/.terraform/
+*.tfstate
+*.tfstate.*
+infra/terraform.tfvars
+crash.log
+*.tfplan
